@@ -1,3 +1,4 @@
 requests
 notify-py
 BeautifulSoup4
+wxpython
