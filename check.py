@@ -19,11 +19,13 @@ def Check(url: str, tag: str, frame):
         initial_request = requests.get(url)
     except:
         frame.Error("Url is unreachable. You may be blocked, the url isn't correct, the website is down or my code is shit ;)", "Network error")
+        return
 
         
     # checking if the url is reachable
     if initial_request.status_code != 200:
         frame.Error(f"http status code = {initial_request.status_code}", "Error getting the url")
+        return
 
     frame.Print("Website reached successfully")
     frame.Print("page saved to memory, you'll be notified for any change")
@@ -39,6 +41,7 @@ def Check(url: str, tag: str, frame):
         req = requests.get(url)
         if req.status_code != 200:
             frame.Error(f"http status code = {req.status_code}", "Error getting the url")
+            return
 
         try:
             new_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(tag)
