@@ -4,7 +4,7 @@ from notifypy import Notify
 from bs4 import BeautifulSoup
 
 RUNNING = True
-WAIT_TIME = 5
+WAIT_TIME = 60
 
 def Check(url: str, tag: str, frame):
     url = url
