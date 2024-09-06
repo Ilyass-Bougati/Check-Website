@@ -17,5 +17,5 @@ WAIT_TIME = 60
 # Compiling
 To compile the python script to a `.exe` file I used the `pyinstaller` module
 ```bash
-pyinstaller -i icon/exe-icon.ic -F -w app.py
+pyinstaller -i icon/exe-icon.ico -F -w app.py
 ```
