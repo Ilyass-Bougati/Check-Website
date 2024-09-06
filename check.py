@@ -6,20 +6,27 @@ from sys import argv
 
 WAIT_TIME = 60
 
-
 # Checking if the url exists
 if len(argv) != 3:
-    print("USAGE: python check.py [url] [tag]")
-    exit(1)
+    url = input("url : ")
+    tag = input("tag : ")
+else:
+    url = url = argv[1]
+    tag = argv[2]
 
-ELEMENT   = argv[2]
 
 # Create a notification object
 notification = Notify()
 # getting the initial page
-url = argv[1]
+
 print(f"Getting the provided url...")
-initial_request = requests.get(url)
+try:
+    initial_request = requests.get(url)
+except:
+    print("Error getting the url")
+    exit(1)
+
+    
 # checking if the url is reachable
 if initial_request.status_code != 200:
     print("Error getting the url")
@@ -27,7 +34,7 @@ if initial_request.status_code != 200:
 
 print("Website reached successfully")
 print("page saved to memory, you'll be notified for any change")
-init_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(ELEMENT)
+init_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(tag)
 
 # checking if the page changed
 i = 1
@@ -40,7 +47,7 @@ while True:
     if req.status_code != 200:
         print("Error getting the url")
         print(f"http status code = {req.status_code}")
-    new_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(ELEMENT)
+    new_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(tag)
 
     if init_list != new_list:
         # Set the title and message for the notification
