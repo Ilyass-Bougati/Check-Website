@@ -1,1 +1,4 @@
 __pychache__
+dist
+build
+app.spec

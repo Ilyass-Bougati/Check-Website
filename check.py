@@ -4,17 +4,16 @@ from notifypy import Notify
 from bs4 import BeautifulSoup
 
 RUNNING = True
-WAIT_TIME = 60
+WAIT_TIME = 5
 
 def Check(url: str, tag: str, frame):
     url = url
-    tag = str
+    tag = tag
 
     # Create a notification object
     notification = Notify()
     # getting the initial page
 
-    print(f"Getting the provided url...")
     try:
         initial_request = requests.get(url)
     except:
@@ -43,12 +42,13 @@ def Check(url: str, tag: str, frame):
             frame.Error(f"http status code = {req.status_code}", "Error getting the url")
             return
 
+        # parsing the new page
         try:
-            new_list = BeautifulSoup(initial_request.text, features="html.parser").find_all(tag)
+            new_list = BeautifulSoup(req.text, features="html.parser").find_all(tag)
         except:
             frame.Error("Error parsing or searching through the page", "Parsing error")
 
-
+        # checking the the page has changed
         if init_list != new_list:
             # Set the title and message for the notification
             notification.title = "Spotted a change in the web page"
