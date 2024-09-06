@@ -18,7 +18,7 @@ ELEMENT   = argv[2]
 notification = Notify()
 # getting the initial page
 url = argv[1]
-print(f"Getting the provided url : ")
+print(f"Getting the provided url...")
 initial_request = requests.get(url)
 # checking if the url is reachable
 if initial_request.status_code != 200:
@@ -56,5 +56,3 @@ while True:
         print(f"Check {i}: Nothing changed", end="\r")
 
     i = i + 1
-
-print(new_page)
