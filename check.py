@@ -12,6 +12,10 @@ def Check(url: str, tag: str, frame):
 
     # Create a notification object
     notification = Notify()
+    notification.urgency = "critical"
+    notification.icon = "icon/icon.png"
+    notification.title = "Listening..."
+    
     # getting the initial page
 
     try:
@@ -20,6 +24,10 @@ def Check(url: str, tag: str, frame):
         frame.Error("Url is unreachable. You may be blocked, the url isn't correct, the website is down or my code is shit ;)", "Network error")
         return
 
+    # sending a notification
+    notification.application_name = "Checker"
+    notification.message = f"Checker is listening to changes in in {url}..."
+    notification.send()
         
     # checking if the url is reachable
     if initial_request.status_code != 200:
@@ -53,8 +61,6 @@ def Check(url: str, tag: str, frame):
             # Set the title and message for the notification
             notification.title = "Spotted a change in the web page"
             notification.message = f"Something changed in\n{url}"
-            notification.urgency = "critical"
-            notification.icon = "icon/icon.png"
             # Display the notification
             notification.send()
             
