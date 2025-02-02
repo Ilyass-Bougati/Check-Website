@@ -5,7 +5,7 @@ pip install -r requirements.txt
 ```
 Then you can run the project using the command
 ```bash
-python check.py https://google.com div
+python app.py
 ```
 
 # Remarques
@@ -19,3 +19,4 @@ To compile the python script to a `.exe` file I used the `pyinstaller` module
 ```bash
 pyinstaller -i icon/exe-icon.ico -F -w app.py
 ```
+as a remarque there's no benifit to compiling it, I just wanted to experiment a bit ;)

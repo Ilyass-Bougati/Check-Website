@@ -1,5 +1,5 @@
 import wx
-from check import Check, RUNNING
+from check import Checker
 import threading
 import sys
 
@@ -35,7 +35,7 @@ class MyFrame(wx.Frame):
             self.Error("Fill the inputs", "Input error")
         else:
             args = (self.url_input.Value, self.tag_input.Value, self)
-            self.t = threading.Thread(target=Check, args=args)
+            self.t = threading.Thread(target=checker.Check, args=args)
             self.t.start()
 
     def Print(self, msg: str):
@@ -49,7 +49,8 @@ class MyFrame(wx.Frame):
 
 
 if __name__ == '__main__':
+    checker = Checker()
     app = wx.App()
     frame = MyFrame()
     app.MainLoop()
-    RUNNING = False
+    checker.Check = False

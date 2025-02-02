@@ -1,4 +1,5 @@
-__pychache__/
+__pycache__/
 dist
 build
+index.html
 app.spec
